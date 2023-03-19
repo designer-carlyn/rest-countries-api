@@ -16,17 +16,19 @@ const CountryList = () => {
   };
 
   const onSelectRegion = (event) => {
-    let value = event.target.value;
+    let value = event.target.value.toLowerCase();
     setSelectRegion(value);
   };
 
-  const filteringCountry = countries.filter((country) =>
-    country.name.common.toLowerCase().includes(searchInput.toLowerCase())
+  const filteringCountry = countries.filter(
+    (country) =>
+      country.name.common.toLowerCase().includes(searchInput) &&
+      country.region.toLowerCase().includes(selectRegion)
   );
 
   useEffect(() => {
     setfilteredCountry(filteringCountry);
-  }, [searchInput, countries]);
+  }, [searchInput, countries, selectRegion]);
 
   return (
     <div>
@@ -44,11 +46,14 @@ const CountryList = () => {
         <option value="america">America</option>
         <option value="asia">Asia</option>
         <option value="europe">Europe</option>
-        <option value="oceenia">Oceenia</option>
+        <option value="oceania">Oceania</option>
       </select>
       {filteredCountry.map((country, index) => {
         return (
-          <CountryCard key={index} name={country.name.common}></CountryCard>
+          <div key={index}>
+            <CountryCard key={index} name={country.name.common}></CountryCard>
+            <h5>{country.region}</h5>
+          </div>
         );
       })}
     </div>
