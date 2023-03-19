@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { selecCountry, getSelectedCountry } from "@/redux/countries-slice";
+import {
+  selectCountry,
+  getSelectedCountry,
+  removeSelectedCountry,
+} from "@/redux/countries-slice";
 import axios from "axios";
 
 const CountryDetails = () => {
@@ -10,7 +14,7 @@ const CountryDetails = () => {
   const dispatch = useDispatch();
   const country = useSelector(getSelectedCountry);
 
-  console.log(country);
+  const checkBorders = country.find((item) => item.borders);
 
   useEffect(() => {
     if (router.isReady) {
@@ -20,15 +24,40 @@ const CountryDetails = () => {
           .catch((error) => {
             console.log(error);
           });
-        dispatch(selecCountry(response.data));
+        dispatch(selectCountry(response.data));
       };
       fetchCountryDetails();
     }
+
+    return () => {
+      dispatch(removeSelectedCountry([]));
+    };
   }, [dispatch, router.isReady]);
 
   return (
     <div>
-      <h1>{name}</h1>
+      {country.map((item, index) => {
+        return (
+          <div key={index}>
+            <h1>{item.name.common}</h1>
+            <h2>{item.subregion}</h2>
+            {checkBorders === undefined ? (
+              "FUCK I HAVE NO BORDERS"
+            ) : (
+              <div>
+                {item.borders.map((items) => {
+                  return (
+                    <div>
+                      <small>{items}</small>
+                      <br />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };

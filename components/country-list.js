@@ -6,31 +6,47 @@ import CountryCard from "./country-card";
 
 const CountryList = () => {
   const countries = useSelector(getAllCountries);
-  const [filteredSearch, setfilteredSearch] = useState(countries);
+  const [filteredCountry, setfilteredCountry] = useState(countries);
   const [searchInput, setSearchInput] = useState("");
+  const [selectRegion, setSelectRegion] = useState("");
 
-  const searchCountry = (event) => {
+  const onSearchCountry = (event) => {
     let value = event.target.value;
     setSearchInput(value.toLowerCase());
   };
 
-  const filteringSearch = countries.filter((country) =>
+  const onSelectRegion = (event) => {
+    let value = event.target.value;
+    setSelectRegion(value);
+  };
+
+  const filteringCountry = countries.filter((country) =>
     country.name.common.toLowerCase().includes(searchInput.toLowerCase())
   );
 
   useEffect(() => {
-    setfilteredSearch(filteringSearch);
-  }, [searchInput]);
+    setfilteredCountry(filteringCountry);
+  }, [searchInput, countries]);
 
   return (
     <div>
       {searchInput}
       <input
         type="text"
-        onChange={searchCountry}
+        onChange={onSearchCountry}
         placeholder="Search country here..."
       />
-      {filteredSearch.map((country, index) => {
+      <select defaultValue={""} onChange={onSelectRegion}>
+        <option value="" disabled>
+          Filter by Region
+        </option>
+        <option value="africa">Africa</option>
+        <option value="america">America</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceenia">Oceenia</option>
+      </select>
+      {filteredCountry.map((country, index) => {
         return (
           <CountryCard key={index} name={country.name.common}></CountryCard>
         );

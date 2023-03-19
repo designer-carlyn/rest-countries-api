@@ -1,8 +1,8 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   countries: [],
-  selectedCountry: {},
+  selectedCountry: [],
 };
 
 export const countriesSlice = createSlice({
@@ -12,13 +12,17 @@ export const countriesSlice = createSlice({
     setCountries: (state, action) => {
       state.countries = action.payload;
     },
-    selecCountry: (state, action) => {
+    selectCountry: (state, action) => {
       state.selectedCountry = action.payload;
+    },
+    removeSelectedCountry: (state) => {
+      state.selectedCountry = [];
     },
   },
 });
 
-export const { setCountries, selecCountry } = countriesSlice.actions;
+export const { setCountries, selectCountry, removeSelectedCountry } =
+  countriesSlice.actions;
 
 export const getAllCountries = (state) => state.countries.countries;
 export const getSelectedCountry = (state) => state.countries.selectedCountry;
