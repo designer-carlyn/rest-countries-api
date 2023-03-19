@@ -6,6 +6,7 @@ import {
   getSelectedCountry,
   removeSelectedCountry,
 } from "@/redux/countries-slice";
+import { API_URL_FULLNAME } from "@/redux/constants";
 import axios from "axios";
 
 const CountryDetails = () => {
@@ -20,7 +21,7 @@ const CountryDetails = () => {
     if (router.isReady) {
       const fetchCountryDetails = async () => {
         const response = await axios
-          .get(`https://restcountries.com/v3.1/name/${name}`)
+          .get(API_URL_FULLNAME(name))
           .catch((error) => {
             console.log(error);
           });
