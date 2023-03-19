@@ -13,20 +13,22 @@ const CountryDetails = () => {
   console.log(country);
 
   useEffect(() => {
-    const fetchCountryDetails = async () => {
-      const response = await axios
-        .get(`https://restcountries.com/v3.1/name/${name}`)
-        .catch((error) => {
-          console.log(error);
-        });
-      dispatch(selecCountry(response.data));
-    };
-    fetchCountryDetails();
-  }, [dispatch]);
+    if (router.isReady) {
+      const fetchCountryDetails = async () => {
+        const response = await axios
+          .get(`https://restcountries.com/v3.1/name/${name}`)
+          .catch((error) => {
+            console.log(error);
+          });
+        dispatch(selecCountry(response.data));
+      };
+      fetchCountryDetails();
+    }
+  }, [dispatch, router.isReady]);
 
   return (
     <div>
-      <h1>asd</h1>
+      <h1>{name}</h1>
     </div>
   );
 };
