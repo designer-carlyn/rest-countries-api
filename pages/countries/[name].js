@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -6,7 +6,7 @@ import {
   getSelectedCountry,
   removeSelectedCountry,
 } from "@/redux/countries-slice";
-import { API_URL_FULLNAME } from "@/redux/constants";
+import { API_URL_FULLNAME, API_URL_BORDERS } from "@/redux/constants";
 import axios from "axios";
 
 const CountryDetails = () => {
@@ -14,24 +14,53 @@ const CountryDetails = () => {
   const name = router.query.name;
   const dispatch = useDispatch();
   const country = useSelector(getSelectedCountry);
+  const [borders, setBorders] = useState([]);
 
-  const checkBorders = country.find((item) => item.borders);
+  const fetchCountryDetails = async () => {
+    const response = await axios.get(API_URL_FULLNAME(name)).catch((error) => {
+      console.log(error);
+    });
+    dispatch(selectCountry(response.data));
+
+    const findBorder = response.data.find((item) => item.borders);
+
+    if (findBorder !== undefined) {
+      localStorage.setItem(
+        "countryCode",
+        response.data.map((item) => item.borders)
+      );
+    }
+  };
+
+  const fetchCountryBorders = async () => {
+    await axios
+      .get(API_URL_BORDERS(localStorage.getItem("countryCode")))
+      .then((response) => {
+        return response.data;
+      })
+      .then((data) => {
+        setBorders(data.map((item) => item.name.common));
+      })
+      .catch((error) => {
+        return "NO BORDERS" + error.message;
+      });
+  };
+
+  console.log(borders);
 
   useEffect(() => {
-    if (router.isReady) {
-      const fetchCountryDetails = async () => {
-        const response = await axios
-          .get(API_URL_FULLNAME(name))
-          .catch((error) => {
-            console.log(error);
-          });
-        dispatch(selectCountry(response.data));
-      };
-      fetchCountryDetails();
-    }
+    if (!router.isReady) return;
+
+    fetchCountryDetails();
+    setTimeout(() => {
+      if (localStorage.getItem("countryCode") !== null) {
+        fetchCountryBorders();
+      }
+    }, 1000);
 
     return () => {
       dispatch(removeSelectedCountry([]));
+      localStorage.removeItem("countryCode");
     };
   }, [dispatch, router.isReady]);
 
@@ -42,13 +71,13 @@ const CountryDetails = () => {
           <div key={index}>
             <h1>{item.name.common}</h1>
             <h2>{item.subregion}</h2>
-            {checkBorders === undefined ? (
+            {item.borders === undefined ? (
               "FUCK I HAVE NO BORDERS"
             ) : (
               <div>
-                {item.borders.map((items) => {
+                {borders.map((items, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <small>{items}</small>
                       <br />
                     </div>
