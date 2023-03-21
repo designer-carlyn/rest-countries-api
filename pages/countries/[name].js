@@ -17,22 +17,6 @@ const CountryDetails = () => {
   const country = useSelector(getSelectedCountry);
   const [borders, setBorders] = useState([]);
 
-  const fetchCountryDetails = async () => {
-    const response = await axios.get(API_URL_FULLNAME(name)).catch((error) => {
-      console.log(error);
-    });
-    dispatch(selectCountry(response.data));
-
-    const findBorder = response.data.find((item) => item.borders);
-
-    if (findBorder !== undefined) {
-      localStorage.setItem(
-        "countryCode",
-        response.data.map((item) => item.borders)
-      );
-    }
-  };
-
   const fetchCountryBorders = async () => {
     await axios
       .get(API_URL_BORDERS(localStorage.getItem("countryCode")))
@@ -52,7 +36,26 @@ const CountryDetails = () => {
   useEffect(() => {
     if (!router.isReady) return;
 
+    const fetchCountryDetails = async () => {
+      const response = await axios
+        .get(API_URL_FULLNAME(name))
+        .catch((error) => {
+          console.log(error);
+        });
+      dispatch(selectCountry(response.data));
+
+      const findBorder = response.data.find((item) => item.borders);
+
+      if (findBorder !== undefined) {
+        localStorage.setItem(
+          "countryCode",
+          response.data.map((item) => item.borders)
+        );
+      }
+    };
+
     fetchCountryDetails();
+
     setTimeout(() => {
       if (localStorage.getItem("countryCode") !== null) {
         fetchCountryBorders();

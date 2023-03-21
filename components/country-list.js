@@ -20,13 +20,12 @@ const CountryList = () => {
     setSelectRegion(value);
   };
 
-  const filteringCountry = countries.filter(
-    (country) =>
-      country.name.common.toLowerCase().includes(searchInput) &&
-      country.region.toLowerCase().includes(selectRegion)
-  );
-
   useEffect(() => {
+    const filteringCountry = countries.filter(
+      (country) =>
+        country.name.common.toLowerCase().includes(searchInput) &&
+        country.region.toLowerCase().includes(selectRegion)
+    );
     setfilteredCountry(filteringCountry);
   }, [searchInput, countries, selectRegion]);
 
