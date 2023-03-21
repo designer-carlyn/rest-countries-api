@@ -21,8 +21,8 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <main>
+    <section className="rest-countries__home">
       <CountryList></CountryList>
-    </main>
+    </section>
   );
 }

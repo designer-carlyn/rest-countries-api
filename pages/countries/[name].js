@@ -67,7 +67,7 @@ const CountryDetails = () => {
   }, [dispatch, router.isReady, name]);
 
   return (
-    <div>
+    <div className="rest-countries__detail">
       <Link href="/">Back to Main Page</Link>
       {country.map((item, index) => {
         return (
