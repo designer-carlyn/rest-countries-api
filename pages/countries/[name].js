@@ -31,8 +31,6 @@ const CountryDetails = () => {
       });
   };
 
-  console.log(borders);
-
   useEffect(() => {
     if (!router.isReady) return;
 
@@ -66,7 +64,7 @@ const CountryDetails = () => {
       dispatch(removeSelectedCountry([]));
       localStorage.removeItem("countryCode");
     };
-  }, [dispatch, router.isReady]);
+  }, [dispatch, router.isReady, name]);
 
   return (
     <div>
