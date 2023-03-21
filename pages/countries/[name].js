@@ -40,7 +40,29 @@ const CountryDetails = () => {
         .catch((error) => {
           console.log(error);
         });
-      dispatch(selectCountry(response.data));
+
+      console.log(response);
+
+      const countryDetails = response.data.map((item) => {
+        let object = {};
+
+        object.name = item.name.common;
+        object.nativeName = item.name.nativeName;
+        object.borders = item.borders;
+        object.population = item.population;
+        object.tld = item.tld;
+        object.currencies = item.currencies;
+        object.region = item.region;
+        object.languages = item.languages;
+        object.subregion = item.subregion;
+        object.capital = item.capital;
+        object.continents = item.continents;
+        object.flags = item.flags;
+
+        return object;
+      });
+
+      dispatch(selectCountry(countryDetails));
 
       const findBorder = response.data.find((item) => item.borders);
 
@@ -72,8 +94,51 @@ const CountryDetails = () => {
       {country.map((item, index) => {
         return (
           <div key={index}>
-            <h1>{item.name.common}</h1>
-            <h2>{item.subregion}</h2>
+            <img src={item.flags.svg} alt={item.flags.alt} />
+            <h1>{item.name}</h1>
+            <div>
+              {Object.keys(item.nativeName).map((keys, index) => {
+                return (
+                  <div key={index}>
+                    <h2>{item.nativeName[keys].common}</h2>
+                  </div>
+                );
+              })}
+            </div>
+            <h2>{item.continents}</h2>
+            <h3>{item.population}</h3>
+            <div>
+              {Object.keys(item.currencies).map((keys, index) => {
+                return (
+                  <div key={index}>
+                    <h3>{item.currencies[keys].name}</h3>
+                  </div>
+                );
+              })}
+            </div>
+            <h3>{item.region}</h3>
+            <div>
+              {Object.keys(item.languages).map((keys, index) => {
+                return (
+                  <div key={index}>
+                    <h3>{item.languages[keys]}</h3>
+                  </div>
+                );
+              })}
+            </div>
+            <h3>{item.subregion}</h3>
+            <h3>{item.capital}</h3>
+            <br />
+            <div>
+              {item.tld.map((items, index) => {
+                return (
+                  <div key={index}>
+                    <h3>{items}</h3> <br />
+                  </div>
+                );
+              })}
+            </div>
+            <br />
             {item.borders === undefined ? (
               "FUCK I HAVE NO BORDERS"
             ) : (

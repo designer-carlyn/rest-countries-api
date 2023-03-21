@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
 import { ThemeContext } from "@/context/theme-context";
+import Header from "@/components/header";
 
 export default function App({ Component }) {
   const [darkTheme, setDarkTheme] = useState(ThemeContext);
@@ -14,6 +15,7 @@ export default function App({ Component }) {
     <>
       <Provider store={store}>
         <ThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
+          <Header></Header>
           <main
             className={`rest-countries ${
               darkTheme ? "dark-theme" : "light-theme"
