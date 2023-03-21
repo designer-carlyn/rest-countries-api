@@ -4,7 +4,7 @@ import Link from "next/link";
 const CountryCard = ({ name }) => {
   return (
     <div>
-      <Link href={"/countries/" + name}>
+      <Link href={`/countries/${encodeURIComponent(name)}`}>
         <h3>{name}</h3>
       </Link>
     </div>

@@ -7,6 +7,7 @@ import {
   removeSelectedCountry,
 } from "@/redux/countries-slice";
 import { API_URL_FULLNAME, API_URL_BORDERS } from "@/redux/constants";
+import Link from "next/link";
 import axios from "axios";
 
 const CountryDetails = () => {
@@ -66,6 +67,7 @@ const CountryDetails = () => {
 
   return (
     <div>
+      <Link href="/">Back to Main Page</Link>
       {country.map((item, index) => {
         return (
           <div key={index}>
@@ -78,7 +80,9 @@ const CountryDetails = () => {
                 {borders.map((items, index) => {
                   return (
                     <div key={index}>
-                      <small>{items}</small>
+                      <a href={`/countries/${encodeURIComponent(items)}`}>
+                        {items}
+                      </a>
                       <br />
                     </div>
                   );
