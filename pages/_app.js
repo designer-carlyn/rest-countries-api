@@ -9,6 +9,7 @@ import { ThemeContext } from "@/context/theme-context";
 import Header from "@/components/header";
 import "../scss/components/theme-style.scss";
 import "../scss/components/header.scss";
+import "../scss/components/country-filter.scss";
 
 export default function App({ Component }) {
   const [darkTheme, setDarkTheme] = useState(ThemeContext);

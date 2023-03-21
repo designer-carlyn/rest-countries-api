@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getAllCountries } from "@/redux/countries-slice";
+import CountryFilter from "./country-filter";
 
 import CountryCard from "./country-card";
 
@@ -10,13 +11,11 @@ const CountryList = () => {
   const [searchInput, setSearchInput] = useState("");
   const [selectRegion, setSelectRegion] = useState("");
 
-  const onSearchCountry = (event) => {
-    let value = event.target.value;
+  const onSearchCountry = (value) => {
     setSearchInput(value.toLowerCase());
   };
 
-  const onSelectRegion = (event) => {
-    let value = event.target.value.toLowerCase();
+  const onSelectRegion = (value) => {
     setSelectRegion(value);
   };
 
@@ -30,31 +29,21 @@ const CountryList = () => {
   }, [searchInput, countries, selectRegion]);
 
   return (
-    <div>
-      {searchInput}
-      <input
-        type="text"
-        onChange={onSearchCountry}
-        placeholder="Search country here..."
-      />
-      <select defaultValue={""} onChange={onSelectRegion}>
-        <option value="" disabled>
-          Filter by Region
-        </option>
-        <option value="africa">Africa</option>
-        <option value="america">America</option>
-        <option value="asia">Asia</option>
-        <option value="europe">Europe</option>
-        <option value="oceania">Oceania</option>
-      </select>
-      {filteredCountry.map((country, index) => {
-        return (
-          <div key={index}>
-            <CountryCard key={index} name={country.name.common}></CountryCard>
-            <h5>{country.region}</h5>
-          </div>
-        );
-      })}
+    <div className="country-list">
+      <CountryFilter
+        propsOnSearchCountry={onSearchCountry}
+        propsOnSelectRegion={onSelectRegion}
+      ></CountryFilter>
+      <div className="country-list__grid">
+        {filteredCountry.map((country, index) => {
+          return (
+            <div key={index}>
+              <CountryCard key={index} name={country.name.common}></CountryCard>
+              <h5>{country.region}</h5>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
