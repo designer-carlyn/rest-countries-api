@@ -37,10 +37,15 @@ const CountryList = () => {
       <div className="country-list__grid">
         {filteredCountry.map((country, index) => {
           return (
-            <div key={index}>
-              <CountryCard key={index} name={country.name.common}></CountryCard>
-              <h5>{country.region}</h5>
-            </div>
+            <CountryCard
+              key={index}
+              name={country.name.common}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+              flag={country.flags.svg}
+              alt={country.flags.alt}
+            ></CountryCard>
           );
         })}
       </div>
