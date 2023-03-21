@@ -22,7 +22,9 @@ export default function Home() {
 
   return (
     <section className="rest-countries__home">
-      <CountryList></CountryList>
+      <div className="container-fluid">
+        <CountryList></CountryList>
+      </div>
     </section>
   );
 }

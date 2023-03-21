@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import store from "@/redux/store";
 import { ThemeContext } from "@/context/theme-context";
 import Header from "@/components/header";
+import "../scss/components/theme-style.scss";
+import "../scss/components/header.scss";
 
 export default function App({ Component }) {
   const [darkTheme, setDarkTheme] = useState(ThemeContext);
@@ -18,7 +20,7 @@ export default function App({ Component }) {
           <Header></Header>
           <main
             className={`rest-countries ${
-              darkTheme ? "dark-theme" : "light-theme"
+              darkTheme ? "light-theme" : "dark-theme"
             }`}
           >
             <Component />

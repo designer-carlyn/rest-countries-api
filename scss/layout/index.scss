@@ -1,3 +1,5 @@
+@forward "../helpers/variables.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -7,12 +9,15 @@ body {
   font-family: "Nunito Sans", sans-serif;
 }
 
+main {
+  padding: 40px 0;
+}
+
 a {
   text-decoration: none;
 }
 
 .container-fluid {
-  width: 100%;
   padding: 0 calc(4vw + 16px);
   margin-right: auto;
   margin-left: auto;
