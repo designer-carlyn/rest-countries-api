@@ -29,7 +29,7 @@ const CountryFilter = ({ propsOnSearchCountry, propsOnSelectRegion }) => {
         <input
           type="text"
           onChange={onSearchCountry}
-          placeholder="Search country here..."
+          placeholder="Search for a country..."
         />
       </div>
       <div className="filter-region">

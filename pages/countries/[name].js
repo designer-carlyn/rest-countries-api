@@ -41,8 +41,6 @@ const CountryDetails = () => {
           console.log(error);
         });
 
-      console.log(response);
-
       const countryDetails = response.data.map((item) => {
         let object = {};
 
@@ -89,76 +87,102 @@ const CountryDetails = () => {
   }, [dispatch, router.isReady, name]);
 
   return (
-    <div className="rest-countries__detail">
-      <Link href="/">Back to Main Page</Link>
-      {country.map((item, index) => {
-        return (
-          <div key={index}>
-            <img src={item.flags.svg} alt={item.flags.alt} />
-            <h1>{item.name}</h1>
-            <div>
-              {Object.keys(item.nativeName).map((keys, index) => {
-                return (
-                  <div key={index}>
-                    <h2>{item.nativeName[keys].common}</h2>
-                  </div>
-                );
-              })}
-            </div>
-            <h2>{item.continents}</h2>
-            <h3>{item.population}</h3>
-            <div>
-              {Object.keys(item.currencies).map((keys, index) => {
-                return (
-                  <div key={index}>
-                    <h3>{item.currencies[keys].name}</h3>
-                  </div>
-                );
-              })}
-            </div>
-            <h3>{item.region}</h3>
-            <div>
-              {Object.keys(item.languages).map((keys, index) => {
-                return (
-                  <div key={index}>
-                    <h3>{item.languages[keys]}</h3>
-                  </div>
-                );
-              })}
-            </div>
-            <h3>{item.subregion}</h3>
-            <h3>{item.capital}</h3>
-            <br />
-            <div>
-              {item.tld.map((items, index) => {
-                return (
-                  <div key={index}>
-                    <h3>{items}</h3> <br />
-                  </div>
-                );
-              })}
-            </div>
-            <br />
-            {item.borders === undefined ? (
-              "FUCK I HAVE NO BORDERS"
-            ) : (
-              <div>
-                {borders.map((items, index) => {
-                  return (
-                    <div key={index}>
-                      <a href={`/countries/${encodeURIComponent(items)}`}>
-                        {items}
-                      </a>
-                      <br />
-                    </div>
-                  );
-                })}
+    <section className="rest-countries__details">
+      <div className="container-fluid">
+        <Link className="details-back" href="/">
+          <svg
+            width="24"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+            fillRule="evenodd"
+            clipRule="evenodd"
+          >
+            <path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z" />
+          </svg>
+          Back
+        </Link>
+        {country.map((item, index) => {
+          return (
+            <div className="details-grid" key={index}>
+              <div className="details-image">
+                <img src={item.flags.svg} alt={item.flags.alt} />
               </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
+
+              <div className="details-info">
+                <h1>{item.name}</h1>
+                <h2>
+                  Native Name:
+                  {Object.keys(item.nativeName).map((keys, index) => {
+                    return (
+                      <span key={index}>
+                        <span> {item.nativeName[keys].common},</span>
+                      </span>
+                    );
+                  })}
+                </h2>
+                <h3>
+                  Continents: <span>{item.continents}</span>
+                </h3>
+                <h4>
+                  Population: <span>{item.population}</span>
+                </h4>
+                <h5>
+                  Currencies:
+                  {Object.keys(item.currencies).map((keys, index) => {
+                    return (
+                      <span key={index}>
+                        <span> {item.currencies[keys].name}</span>
+                      </span>
+                    );
+                  })}
+                </h5>
+                <h6>
+                  Region: <span>{item.region}</span>
+                </h6>
+                <div>
+                  {Object.keys(item.languages).map((keys, index) => {
+                    return (
+                      <div key={index}>
+                        <h3>{item.languages[keys]}</h3>
+                      </div>
+                    );
+                  })}
+                </div>
+                <h3>{item.subregion}</h3>
+                <h3>{item.capital}</h3>
+                <br />
+                <div>
+                  {item.tld.map((items, index) => {
+                    return (
+                      <div key={index}>
+                        <h3>{items}</h3> <br />
+                      </div>
+                    );
+                  })}
+                </div>
+                <br />
+                {item.borders === undefined ? (
+                  "FUCK I HAVE NO BORDERS"
+                ) : (
+                  <div>
+                    {borders.map((items, index) => {
+                      return (
+                        <div key={index}>
+                          <a href={`/countries/${encodeURIComponent(items)}`}>
+                            {items}
+                          </a>
+                          <br />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 };
 

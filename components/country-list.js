@@ -29,7 +29,7 @@ const CountryList = () => {
   }, [searchInput, countries, selectRegion]);
 
   return (
-    <div className="country-list">
+    <>
       <CountryFilter
         propsOnSearchCountry={onSearchCountry}
         propsOnSelectRegion={onSelectRegion}
@@ -49,7 +49,7 @@ const CountryList = () => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
