@@ -5,7 +5,6 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="shortcut icon" href="/favicon.png" />
-        <title>Rest Countries API</title>
         <meta property="og:title" content="Rest Countries API" />
         <meta property="og:type" content="website" />
         <meta

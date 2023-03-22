@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setCountries } from "@/redux/countries-slice";
@@ -21,10 +22,15 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <section className="rest-countries__home">
-      <div className="container-fluid">
-        <CountryList></CountryList>
-      </div>
-    </section>
+    <>
+      <Head>
+        <title>Rest Countries API</title>
+      </Head>
+      <section className="rest-countries__home">
+        <div className="container-fluid">
+          <CountryList></CountryList>
+        </div>
+      </section>
+    </>
   );
 }
