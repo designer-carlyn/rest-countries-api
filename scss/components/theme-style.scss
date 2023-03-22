@@ -73,6 +73,14 @@ main {
       }
     }
   }
+
+  .country-card-loader {
+    background-color: var(--dark-blue);
+
+    .loader-gradient {
+      background-color: #161e26;
+    }
+  }
 }
 
 .light-theme {
@@ -128,6 +136,14 @@ main {
           background-color: var(--c-white);
         }
       }
+    }
+  }
+
+  .country-card-loader {
+    background: var(--c-white);
+
+    .loader-gradient {
+      background: lightgray;
     }
   }
 }

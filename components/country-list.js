@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { useSelector } from "react-redux";
 import { getAllCountries } from "@/redux/countries-slice";
-import CountryFilter from "./country-filter";
 
-import CountryCard from "./country-card";
+import CountryFilter from "./country-filter";
+// import CountryCard from "./country-card";
+const CountryCard = lazy(() => import("./country-card"));
+import CountryCardLoader from "./country-card-loader";
 
 const CountryList = () => {
   const countries = useSelector(getAllCountries);
@@ -37,15 +39,17 @@ const CountryList = () => {
       <div className="country-list__grid">
         {filteredCountry.map((country, index) => {
           return (
-            <CountryCard
-              key={index}
-              name={country.name.common}
-              population={country.population.toLocaleString()}
-              region={country.region}
-              capital={country.capital}
-              flag={country.flags.svg}
-              alt={country.flags.alt}
-            ></CountryCard>
+            <Suspense key={index} fallback={<CountryCardLoader />}>
+              <CountryCard
+                key={index}
+                name={country.name.common}
+                population={country.population.toLocaleString()}
+                region={country.region}
+                capital={country.capital}
+                flag={country.flags.svg}
+                alt={country.flags.alt}
+              ></CountryCard>
+            </Suspense>
           );
         })}
       </div>

@@ -1,0 +1,40 @@
+.country-card-loader {
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  width: 300px;
+  margin-bottom: 50px;
+  
+  .loader-image {
+    height: 150px;
+  }
+
+  .loader-content {
+    padding: 20px;
+
+    .loader-item {
+      height: 15px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+
+      &:first-child {
+        width: 40%;
+        height: 20px;
+        margin-bottom: 20px;
+      }
+
+      &:nth-child(2) {
+        width: 70%;
+      }
+
+      &:nth-child(3) {
+        width: 35%;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+        width: 50%;
+      }
+    }
+  }
+}

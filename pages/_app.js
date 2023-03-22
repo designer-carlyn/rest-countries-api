@@ -12,6 +12,7 @@ import "../scss/components/header.scss";
 import "../scss/components/country-filter.scss";
 import "../scss/components/country-card.scss";
 import "../scss/components/country-details.scss";
+import "../scss/components/country-card-loader.scss";
 
 export default function App({ Component }) {
   const [darkTheme, setDarkTheme] = useState(ThemeContext);
