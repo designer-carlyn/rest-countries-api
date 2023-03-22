@@ -34,8 +34,7 @@ const CountryFilter = ({ propsOnSearchCountry, propsOnSelectRegion }) => {
       </div>
       <div className="filter-region">
         <select
-          id="select-region"
-          name="select-region"
+          aria-label="select-region"
           defaultValue={""}
           onChange={onSelectRegion}
         >
