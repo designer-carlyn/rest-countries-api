@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { getAllCountries } from "@/redux/countries-slice";
 
 import CountryFilter from "./country-filter";
-// import CountryCard from "./country-card";
 const CountryCard = lazy(() => import("./country-card"));
 import CountryCardLoader from "./country-card-loader";
 

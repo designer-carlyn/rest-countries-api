@@ -10,7 +10,6 @@ import {
 import { API_URL_FULLNAME, API_URL_BORDERS } from "@/redux/constants";
 import Link from "next/link";
 import axios from "axios";
-import Image from "next/image";
 
 const CountryDetails = () => {
   const router = useRouter();
@@ -111,12 +110,7 @@ const CountryDetails = () => {
             return (
               <div className="details-grid" key={index}>
                 <div className="details-image">
-                  <Image
-                    src={item.flags.svg}
-                    alt={item.flags.alt}
-                    width={600}
-                    height={400}
-                  />
+                  <img src={item.flags.svg} alt={item.flags.alt} />
                 </div>
                 <div className="details-info">
                   <h1>{item.name}</h1>
