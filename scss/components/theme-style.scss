@@ -50,8 +50,24 @@ main {
         }
       }
 
-      .country-list {
+      .country-list__grid {
         .country-card {
+          background-color: var(--dark-blue);
+        }
+      }
+    }
+
+    &__details {
+      .details-back {
+        background-color: var(--dark-blue);
+
+        svg {
+          fill: var(--c-white);
+        }
+      }
+
+      .details-grid {
+        .border-item {
           background-color: var(--dark-blue);
         }
       }
@@ -91,8 +107,24 @@ main {
         }
       }
 
-      .country-list {
+      .country-list__grid {
         .country-card {
+          background-color: var(--c-white);
+        }
+      }
+    }
+
+    &__details {
+      .details-back {
+        background-color: var(--c-white);
+
+        svg {
+          fill: var(--vry-dark-blue-2);
+        }
+      }
+
+      .details-grid {
+        .border-item {
           background-color: var(--c-white);
         }
       }

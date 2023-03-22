@@ -107,74 +107,66 @@ const CountryDetails = () => {
               <div className="details-image">
                 <img src={item.flags.svg} alt={item.flags.alt} />
               </div>
-
               <div className="details-info">
                 <h1>{item.name}</h1>
-                <h2>
-                  Native Name:
-                  {Object.keys(item.nativeName).map((keys, index) => {
-                    return (
-                      <span key={index}>
-                        <span> {item.nativeName[keys].common},</span>
-                      </span>
-                    );
-                  })}
-                </h2>
-                <h3>
-                  Continents: <span>{item.continents}</span>
-                </h3>
-                <h4>
-                  Population: <span>{item.population}</span>
-                </h4>
-                <h5>
-                  Currencies:
-                  {Object.keys(item.currencies).map((keys, index) => {
-                    return (
-                      <span key={index}>
-                        <span> {item.currencies[keys].name}</span>
-                      </span>
-                    );
-                  })}
-                </h5>
-                <h6>
-                  Region: <span>{item.region}</span>
-                </h6>
-                <div>
-                  {Object.keys(item.languages).map((keys, index) => {
-                    return (
-                      <div key={index}>
-                        <h3>{item.languages[keys]}</h3>
-                      </div>
-                    );
-                  })}
-                </div>
-                <h3>{item.subregion}</h3>
-                <h3>{item.capital}</h3>
-                <br />
-                <div>
-                  {item.tld.map((items, index) => {
-                    return (
-                      <div key={index}>
-                        <h3>{items}</h3> <br />
-                      </div>
-                    );
-                  })}
-                </div>
-                <br />
-                {item.borders === undefined ? (
-                  "FUCK I HAVE NO BORDERS"
-                ) : (
-                  <div>
-                    {borders.map((items, index) => {
+                <div className="info-wrapper">
+                  <h2 className="context">
+                    Native Name:
+                    {Object.keys(item.nativeName).map((keys, index) => {
                       return (
-                        <div key={index}>
-                          <a href={`/countries/${encodeURIComponent(items)}`}>
-                            {items}
-                          </a>
-                          <br />
-                        </div>
+                        <span key={index}>{item.nativeName[keys].common},</span>
                       );
                     })}
+                  </h2>
+                  <h3 className="context">
+                    Continents: <span>{item.continents}</span>
+                  </h3>
+                  <h4 className="context">
+                    Population: <span>{item.population.toLocaleString()}</span>
+                  </h4>
+                  <h5 className="context">
+                    Currencies:
+                    <span>
+                      {Object.values(item.currencies)[0].name} (
+                      {Object.values(item.currencies)[0].symbol})
+                    </span>
+                  </h5>
+                  <h6 className="context">
+                    Region:<span>{item.region}</span>
+                  </h6>
+                  <div className="context">
+                    Top Level Domain:
+                    <span>{item.tld[0]}</span>
+                  </div>
+                  <div className="context">
+                    Languages:
+                    {Object.keys(item.languages).map((keys, index) => {
+                      return <span key={index}> {item.languages[keys]},</span>;
+                    })}
+                  </div>
+                  <div className="context">
+                    Sub Region:<span>{item.subregion}</span>
+                  </div>
+                  <div className="context">
+                    Capital:<span>{item.capital}</span>
+                  </div>
+                </div>
+                {item.borders === undefined ? null : (
+                  <div className="border-wrapper">
+                    Borders Countries:
+                    <div className="border-list">
+                      {borders.map((items, index) => {
+                        return (
+                          <a
+                            key={index}
+                            className="border-item"
+                            href={`/countries/${encodeURIComponent(items)}`}
+                          >
+                            <span>{items}</span>
+                          </a>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
               </div>
