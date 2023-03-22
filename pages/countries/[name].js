@@ -114,7 +114,7 @@ const CountryDetails = () => {
                     Native Name:
                     {Object.keys(item.nativeName).map((keys, index) => {
                       return (
-                        <span key={index}>{item.nativeName[keys].common},</span>
+                        <span key={index}>{item.nativeName[keys].common}</span>
                       );
                     })}
                   </h2>

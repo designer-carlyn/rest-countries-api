@@ -40,7 +40,7 @@ const CountryList = () => {
             <CountryCard
               key={index}
               name={country.name.common}
-              population={country.population}
+              population={country.population.toLocaleString()}
               region={country.region}
               capital={country.capital}
               flag={country.flags.svg}

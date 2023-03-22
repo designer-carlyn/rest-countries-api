@@ -71,6 +71,31 @@
           cursor: pointer;
         }
       }
+
+      @media screen and (max-width: 500px) {
+        .filter-search {
+          padding: 15px 20px;
+          min-width: calc(280px - 40px);
+
+          input {
+            font-size: 14px;
+          }
+
+          svg {
+            width: 16px;
+            margin-right: 20px;
+          }
+        }
+
+        .filter-region {
+          margin-left: 0;
+
+          select {
+            font-size: 14px;
+            padding: 15px 50px 15px 20px;
+          }
+        }
+      }
     }
   }
 }
