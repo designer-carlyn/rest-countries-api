@@ -29,8 +29,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/password-generator-with-reactjs-dNP6gqOmFw)
-- Live Site URL: [Live site URL](https://cs-todo-app.netlify.app/)
+- Solution URL: [Solution URL](https://www.frontendmentor.io/solutions/rest-countries-api-with-color-theme-switcher-SbUkIP75ct)
+- Live Site URL: [Live site URL](https://cs-rest-countries-api.netlify.app/)
 
 ### Built with
 

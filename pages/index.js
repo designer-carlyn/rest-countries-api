@@ -26,11 +26,11 @@ export default function Home() {
       <Head>
         <title>Rest Countries API</title>
       </Head>
-      <section className="rest-countries__home">
+      <div className="rest-countries__home">
         <div className="container-fluid">
           <CountryList></CountryList>
         </div>
-      </section>
+      </div>
     </>
   );
 }

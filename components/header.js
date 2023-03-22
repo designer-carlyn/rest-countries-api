@@ -20,7 +20,7 @@ const Header = () => {
                   src="https://ik.imagekit.io/csdesigner/todo_app/icon-moon_x6usD35ni.svg?updatedAt=1678693698719"
                   alt="icon-moon"
                 />
-                <div className="theme-label">Dark Mode</div>
+                <span className="theme-label">Dark Mode</span>
               </>
             ) : (
               <>
@@ -28,7 +28,7 @@ const Header = () => {
                   src="https://ik.imagekit.io/csdesigner/todo_app/icon-sun_71h0PZdvYg.svg?updatedAt=1678693698856"
                   alt="icon-sun"
                 />
-                <div className="theme-label">Light Mode</div>
+                <span className="theme-label">Light Mode</span>
               </>
             )}
           </button>

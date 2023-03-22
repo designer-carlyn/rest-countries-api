@@ -16,7 +16,7 @@ const CountryFilter = ({ propsOnSearchCountry, propsOnSelectRegion }) => {
       <div className="filter-search">
         <svg
           className="svg-icon search-icon"
-          aria-labelledby="title desc"
+          aria-label="search-icon"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 19.9 19.7"
@@ -33,7 +33,12 @@ const CountryFilter = ({ propsOnSearchCountry, propsOnSelectRegion }) => {
         />
       </div>
       <div className="filter-region">
-        <select defaultValue={""} onChange={onSelectRegion}>
+        <select
+          id="select-region"
+          name="select-region"
+          defaultValue={""}
+          onChange={onSelectRegion}
+        >
           <option value="" disabled>
             Filter by Region
           </option>
