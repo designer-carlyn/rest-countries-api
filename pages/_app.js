@@ -15,7 +15,7 @@ import "../scss/components/country-details.scss";
 import "../scss/components/country-card-loader.scss";
 
 export default function App({ Component }) {
-  const [darkTheme, setDarkTheme] = useState(ThemeContext);
+  const [darkTheme, setDarkTheme] = useState(false);
 
   return (
     <>
@@ -24,7 +24,7 @@ export default function App({ Component }) {
           <Header></Header>
           <main
             className={`rest-countries ${
-              darkTheme ? "light-theme" : "dark-theme"
+              darkTheme ? "dark-theme" : "light-theme"
             }`}
           >
             <Component />
